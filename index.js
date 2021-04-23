@@ -1,7 +1,7 @@
 const jwt_decode = require("jwt-decode");
 
 var AWS = require("aws-sdk");
-AWS.config.update({ region: "us-east-2" });
+AWS.config.update({ region: "eu-central-1" });
 
 function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -13,8 +13,6 @@ function uuidv4() {
 exports.handler = async (event, context, callback) => {
 
     const { "cognito:username": username } = jwt_decode(event.headers["Authorization"]);
-
-    
 
     var ddb = new AWS.DynamoDB({ apiVersion: "2012-08-10" });
     var uuid = uuidv4();
